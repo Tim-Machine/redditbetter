@@ -1,0 +1,39 @@
+
+@upvoteColor : rgb(255, 139, 36);
+@downvoteColor : rgb(148, 148, 255);
+@linkColor : #8AD;
+
+#mainContent
+{
+	li{
+		list-style:none;
+		padding-bottom: 5px;
+		margin-bottom:5px;
+		display: block;
+		border-bottom: 1px #888 solid;
+
+		.articleTitle{
+			font-weight: bold;
+			font-size:  16px;
+			.domain{
+				color: @linkColor;
+				font-weight: light;
+				margin-left: 10px;
+				font-size: 9px;
+			}
+		}
+		.details{
+			color: #888;
+			span { 
+				margin: 0px 5px; 
+				font-size: 10px;
+			}
+			.upvotes{ color: @upvoteColor;}
+			.downvotes{ color: @downvoteColor;}
+		}
+
+
+	}
+
+
+}

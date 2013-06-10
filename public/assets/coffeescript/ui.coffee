@@ -2,7 +2,7 @@
 class ui
 
 	constructor: () ->
-		@$navlink = $('#mainContent ul li')
+		@$navlink = $('#mainContent .listing')
 		@$viewArea = $('#viewContentWrapper')
 		@$mainArea = $('#mainContent')
 		@Transdur = 400
@@ -10,31 +10,49 @@ class ui
 		@smallClass = 'span6'
 		@hidden = 'hidden'
 
-	interface : =>		
-		@$navlink.on 'click', =>
-			@$mainArea.switchClass(@largeClass,@smallClass,@Transdur)
-			@$viewArea.switchClass(@hidden,@smallClass,@Transdur)
-			null
+	interfaceOpen : ()=>	
+		@$mainArea.switchClass(@largeClass,@smallClass,@Transdur)
+		@$viewArea.switchClass(@hidden,@smallClass,@Transdur)
 		null
 
-ui = new ui;
+	interfaceClose: ()=>
+		@$mainArea.switchClass(@smallClass,@largeClass,@Transdur)
+		@$viewArea.switchClass(@smallClass,@hidden,@Transdur)
+		null
+
+	linkclick : () =>
+		selector = $('#mainContent a')
+		thisa = @
+		selector.on 'click', (e)->
+			e.preventDefault();
+			if e.which == 2
+				console.log @
+				@newWindow($(this).attr('href'))
+			else
+				alert " normal load"
+				@interfaceOpen();
+
+	newWindow : (link) ->
+		window.open(link)
+
 
 
 class listings
 
 	constructor: () ->
-		 @listingTemplate = """<li>
-			<div class="listing clicked" data-fullname="{{name}}">
-				<div class="title">{{title}}<span class="domain">{{domain}}</span></div>
-				<div class="details">
-				[<span class='upvotes'>{{ups}}</span>|<span class="downvotes">{{downs}}</span>] posted x hrs ago by user
+		@ui = new ui
+		@listingTemplate = """{{#data}} <li>
+			<div class="listing {{clicked}}" data-fullname="{{name}}">
+				<div class="articleTitle"><a href="{{url}}">{{title}}</a> <span class="domain">({{domain}})</span></div>
+				<div class="details">[<span class='upvotes'>{{ups}}</span>|<span class="downvotes">{{downs}}</span>] posted x hrs ago by {{author}}
 				</div>
-	      	</div> 
-      	</li>"""
+			</div> 
+			</li>{{/data}}""" 
+		@getListings( "" , "" , "")
 
-      	@getListings(null, null , null);
 
 	getListings: (sub , limit, after) ->
+
 		url = "/get/subreddit"
 		if sub != ""
 			url = url+"/"+sub
@@ -43,12 +61,9 @@ class listings
 		if after != ""
 			url = url+"/"+after
 
-		$.getJSON url, (data)->
+		$.getJSON url, (data) =>
 			html = Mustache.to_html(@listingTemplate, data)
 			$('#mainContent ul').append(html);
+			@ui.linkclick()
 
-
-
-
-
-ui.interface();
+$listings = new listings; 

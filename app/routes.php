@@ -13,4 +13,4 @@
 
 Route::get('/', 'HomeController@showWelcome');
 
-Route::get('/get/subreddit/{subreddit?}/{limit?}/{after?}','HomeController@subreddit');
+Route::get('/get/subreddit/{subreddit?}/{limit?}/{after?}','RestController@subreddit');

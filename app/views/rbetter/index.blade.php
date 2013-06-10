@@ -16,6 +16,7 @@
       }
     </style>
     <link href="/assets/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="/assets/css/main.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -33,7 +34,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">Project name</a>
+          <a class="brand" href="#">Reddit-Better</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
@@ -47,15 +48,12 @@
 
     <div class="container-fluid">
       <div class="row-fluid">
-        <div id="mainContent" class="span12" style="background:#fff;height:200px">
+        <div id="mainContent" class="span12" >
           <ul>
-            <li>
-
-            </li>
           </ul> 
         </div>
 
-        <div id="viewContentWrapper" class="hidden" style="background:#000;height:200px">
+        <div id="viewContentWrapper" class="hidden" >
           <div id="content"></div>
           <div id="comments"></div>
         </div>

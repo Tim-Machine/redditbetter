@@ -1,0 +1,4 @@
+#mainContent li{list-style:none;padding-bottom:5px;margin-bottom:5px;display:block;border-bottom:1px #888 solid;}#mainContent li .articleTitle{font-weight:bold;font-size:16px;}#mainContent li .articleTitle .domain{color:#88aadd;font-weight:light;margin-left:10px;font-size:9px;}
+#mainContent li .details{color:#888;}#mainContent li .details span{margin:0px 5px;font-size:10px;}
+#mainContent li .details .upvotes{color:#ff8b24;}
+#mainContent li .details .downvotes{color:#9494ff;}
