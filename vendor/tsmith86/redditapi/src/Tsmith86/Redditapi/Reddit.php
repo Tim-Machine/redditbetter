@@ -14,7 +14,7 @@ class Reddit
 	public $redditUrl = "http://reddit.com/";
 
 	private $modHash = null;
-	private $session = null; 
+	private $session = null;  
 
 	function __construct()
 	{
