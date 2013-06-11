@@ -28,18 +28,17 @@ ui = (function() {
   };
 
   ui.prototype.linkclick = function() {
-    var selector, thisa;
+    var selector, _this;
 
     selector = $('#mainContent a');
-    thisa = this;
+    _this = this;
     return selector.on('click', function(e) {
       e.preventDefault();
       if (e.which === 2) {
-        console.log(this);
-        return this.newWindow($(this).attr('href'));
+        return _this.newWindow($(this).attr('href'));
       } else {
         alert(" normal load");
-        return this.interfaceOpen();
+        return _this.interfaceOpen();
       }
     });
   };

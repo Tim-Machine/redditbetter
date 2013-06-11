@@ -22,15 +22,14 @@ class ui
 
 	linkclick : () =>
 		selector = $('#mainContent a')
-		thisa = @
+		_this = @
 		selector.on 'click', (e)->
 			e.preventDefault();
 			if e.which == 2
-				console.log @
-				@newWindow($(this).attr('href'))
+				_this.newWindow($(this).attr('href'))
 			else
 				alert " normal load"
-				@interfaceOpen();
+				_this.interfaceOpen();
 
 	newWindow : (link) ->
 		window.open(link)
@@ -38,7 +37,6 @@ class ui
 
 
 class listings
-
 	constructor: () ->
 		@ui = new ui
 		@listingTemplate = """{{#data}} <li>
