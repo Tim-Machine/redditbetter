@@ -1,6 +1,4 @@
-
 class ui
-
 	constructor: () ->
 		@$navlink = $('#mainContent .listing')
 		@$viewArea = $('#viewContentWrapper')
@@ -23,7 +21,7 @@ class ui
 		@$viewArea.switchClass(@smallClass,@hidden,@Transdur)
 		null
 
-	linkclick : () =>
+	linkclick : () => 
 		selector = $('#mainContent a')
 		_this = @
 		selector.on 'click', (e)->
@@ -32,14 +30,14 @@ class ui
 				_this.newWindow($(this).attr('href'))
 			else
 				link = $(this).attr('href')
-				title = $(this).val()
+				title = $(this).text()
 				domain = $(this).data('domain')
 				url = urls(domain, link, title )
-				console.log url['title']+"title"
-				new modal(url["title"], url.data)
+				console.log url
+				new modal(url[1], url[0])
 				#_this.interfaceOpen();
 
-	newWindow : (link) ->
+	newWindow : (link) -> 
 		window.open(link)
 
 	resizeWindows : () ->
@@ -79,16 +77,12 @@ class listings
 			@ui.linkclick()
 
 $listings = new listings; 
-
-
-class modal 
+ 
+class modal  
 	constructor: (title, data) ->
-		console.log "tests"
-		console.log title
-		@selector = $("#modal");
-		@selector.find(' #ModalLabel').html(title)
-		@selector.find('#modalBody').html(data)
-		@show()
+		@selector = $("#myModal");
+		$("#myModal #myModalLabel").html(title)
+		$("#myModal #modalBody").html(data)
+		@show() 
 	show: () ->
-		console.log "fire"
-		console.log @selector.modal('show')
+		@selector.modal('show')

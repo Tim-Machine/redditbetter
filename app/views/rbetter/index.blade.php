@@ -66,7 +66,7 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">Modal header</h3>
   </div>
-  <div class="modal-body">
+  <div id="modalBody" class="modal-body">
     <p>One fine body…</p>
   </div>
   <div class="modal-footer">
