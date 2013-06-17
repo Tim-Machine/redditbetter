@@ -33,7 +33,6 @@ class ui
 				title = $(this).text()
 				domain = $(this).data('domain')
 				url = urls(domain, link, title )
-				console.log url
 				new modal(url[1], url[0])
 				#_this.interfaceOpen();
 
@@ -69,20 +68,20 @@ class listings
 		if limit != ""
 			url = url+"/"+limit
 		if after != ""
-			url = url+"/"+after
+			url = url+"/"+after  
 
 		$.getJSON url, (data) =>
 			html = Mustache.to_html(@listingTemplate, data)
 			$('#mainContent ul').append(html);
 			@ui.linkclick()
 
-$listings = new listings; 
+$listings = new listings;
  
 class modal  
 	constructor: (title, data) ->
 		@selector = $("#myModal");
 		$("#myModal #myModalLabel").html(title)
-		$("#myModal #modalBody").html(data)
+		$("#myModal #modalBody").html(data) 
 		@show() 
 	show: () ->
-		@selector.modal('show')
+		@selector.modal('show') 
