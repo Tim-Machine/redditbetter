@@ -19,8 +19,6 @@
    <antcall target="phpdox"/>
   </parallel>
  </target>
-
- <target name="clean" depends="clean-build,clean-composer" description="Cleanup build and composer artifacts" />
  
 
  <target name="clean" description="Cleanup build artifacts">
@@ -122,6 +120,9 @@
  <target name="phpunit" description="Run unit tests with PHPUnit">
   <exec executable="phpunit" failonerror="false"/>
  </target>
+
+<target name="clean-comp" depends="clean-build,clean-composer" description="Cleanup build and composer artifacts" />
+
 <target name="clean-composer" description="Cleanup composer artifacts">
         <echo>Cleaning out the composer artifacts</echo>
         <delete dir="${basedir}/vendor" />
