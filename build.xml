@@ -20,6 +20,9 @@
   </parallel>
  </target>
 
+ <target name="clean" depends="clean-build,clean-composer" description="Cleanup build and composer artifacts" />
+ 
+
  <target name="clean" description="Cleanup build artifacts">
   <delete dir="${basedir}/build/api"/>
   <delete dir="${basedir}/build/coverage"/>
@@ -119,4 +122,34 @@
  <target name="phpunit" description="Run unit tests with PHPUnit">
   <exec executable="phpunit" failonerror="false"/>
  </target>
+<target name="clean-composer" description="Cleanup composer artifacts">
+        <echo>Cleaning out the composer artifacts</echo>
+        <delete dir="${basedir}/vendor" />
+        <delete file="${basedir}/composer.lock" />
+    </target>
+
+    <target name="composer" depends="composer-install,composer-update" description="Install or update dependencies" />
+
+    <!--// Check to see it the vendor folder already exist, if so, then no reason to run //-->
+    <target name="composer.check">
+        <condition property="composer.exist">
+            <available file="${basedir}/vendor" type="dir" />
+        </condition>
+    </target>
+
+    <target name="composer-install" depends="composer.check" unless="composer.exist" description="Installing dependencies">
+        <echo>Installing dependencies</echo>
+        <exec executable="composer" failonerror="true">
+            <arg value="install" />
+        </exec>
+    </target>
+
+    <target name="composer-update" depends="composer.check" if="composer.exist" description="Updating dependencies">
+        <echo>Updating dependencies</echo>
+        <exec executable="composer" failonerror="true">
+            <arg value="update" />
+        </exec>
+    </target>
+
+
 </project>
